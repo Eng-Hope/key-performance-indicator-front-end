@@ -25,30 +25,31 @@ export const SignInSchema = z.object({
   password: z
     .string()
     .min(6, { message: "password must contain atleast 6 characters" }),
- name: z.string().min(1, {message: "name is required"})
+  name: z.string().min(1, { message: "name is required" }),
 });
 
 const NewUser = () => {
   const { toast } = useToast();
   const client = useQueryClient();
 
-    const {
-      register,
-      handleSubmit,
-      control,
-      formState: { errors, isSubmitting: isLoading },
-    } = useForm<z.infer<typeof SignInSchema>>({
-      resolver: zodResolver(SignInSchema),
-    });
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting: isLoading },
+  } = useForm<z.infer<typeof SignInSchema>>({
+    resolver: zodResolver(SignInSchema),
+  });
 
   const onsubmit = handleSubmit(async (data) => {
     const message = await signUp(data);
 
     if (message === "successful") {
       toast({
-        title: "Sign up successful login to continue ",
+        title: "user registered successful ",
         description: message,
       });
+      client.invalidateQueries({ queryKey: ["users"] });
     } else {
       toast({
         variant: "destructive",
@@ -60,52 +61,47 @@ const NewUser = () => {
   });
   return (
     <div className="w-full h-fit flex justify-between items-center">
-      <Label className="text-xl underline">List of users</Label>
+      <Label className="text-xl underline">List of employees</Label>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">new user</Button>
+          <Button variant="outline">new employee</Button>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="text-xl">New user</DialogTitle>
-            <DialogDescription>
-              add a new user
-            </DialogDescription>
+            <DialogTitle className="text-xl">New employee</DialogTitle>
+            <DialogDescription>add a new employee</DialogDescription>
           </DialogHeader>
-        <form
-        onSubmit={onsubmit}
-        className="flex flex-col gap-3"
-      >
-        <div className="flex flex-col gap-7 mt-10">
-          <FormInput
-            placeholder="Enter user name"
-            label="Name"
-            name="name"
-            type="text"
-            register={register}
-            error={errors.name?.message}
-          />
+          <form onSubmit={onsubmit} className="flex flex-col gap-3">
+            <div className="flex flex-col gap-7 mt-10">
+              <FormInput
+                placeholder="Enter user name"
+                label="Name"
+                name="name"
+                type="text"
+                register={register}
+                error={errors.name?.message}
+              />
 
-          <FormInput
-            placeholder="Enter email"
-            label="Email"
-            name="email"
-            type="text"
-            register={register}
-            error={errors.email?.message}
-          />
-          <FormInput
-            placeholder="Enter password"
-            label="Password"
-            name="password"
-            type="password"
-            register={register}
-            error={errors.password?.message}
-          />
-          <SubmitButton loading={isLoading} label="register" />
-        </div>
-      </form>
+              <FormInput
+                placeholder="Enter email"
+                label="Email"
+                name="email"
+                type="text"
+                register={register}
+                error={errors.email?.message}
+              />
+              <FormInput
+                placeholder="Enter password"
+                label="Password"
+                name="password"
+                type="password"
+                register={register}
+                error={errors.password?.message}
+              />
+              <SubmitButton loading={isLoading} label="register" />
+            </div>
+          </form>
         </DialogContent>
       </Dialog>
     </div>

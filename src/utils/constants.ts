@@ -48,11 +48,6 @@ export const sideBarData = [
         url: "/home/employees",
         icon: Users2,
       },
-      {
-        title: "Users",
-        url: "/home/users",
-        icon: User2Icon,
-      },
     ],
   },
 ];

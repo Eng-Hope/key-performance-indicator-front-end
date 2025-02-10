@@ -4,6 +4,12 @@ import { LoginSchema } from "./page";
 import { cookies } from "next/headers";
 import { encriptUserDetails } from "@/utils/authentication";
 
+
+/**
+ * login the user
+ * @param data 
+ * @returns 
+ */
 export async function login(data: z.infer<typeof LoginSchema>) {
   const cookieStote = await cookies();
   try {
@@ -17,6 +23,8 @@ export async function login(data: z.infer<typeof LoginSchema>) {
 
     if (response.ok) {
       const token = await response.json();
+
+      //set authentication token to the cookies
       cookieStote.set({
         name: "auth-token",
         secure: process.env.NODE_ENV === "production",
@@ -25,6 +33,18 @@ export async function login(data: z.infer<typeof LoginSchema>) {
         maxAge: 365 * 24 * 60 * 60,
         expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
       });
+
+      //set token expiration time to the cookies
+      cookieStote.set({
+        name: "auth-exp",
+        secure: process.env.NODE_ENV === "production",
+        value: token.exp,
+        httpOnly: true,
+        maxAge: 365 * 24 * 60 * 60,
+        expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
+      });
+
+      //encript user details and set them to the cookies
       const details = await encriptUserDetails(token.user);
       cookieStote.set({
         name: "details",

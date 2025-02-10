@@ -6,6 +6,11 @@ import { SignInSchema } from "./_components/new_user_form";
 import { getToken } from "@/utils/authentication";
 import { PaginatedUser } from "@/utils/types";
 
+/**
+ * sign up the user
+ * @param data 
+ * @returns 
+ */
 export async function signUp(
   data: z.infer<typeof SignInSchema> 
 ) {
@@ -31,6 +36,13 @@ export async function signUp(
   }
 }
 
+/**
+ * fetch users 
+ * @param page 
+ * @param perpage 
+ * @param query 
+ * @returns 
+ */
 export async function getAllUsers(
   page?: number,
   perpage?: number,

@@ -20,26 +20,25 @@ import { Plus } from "lucide-react";
 import { FormSelect } from "@/app/_components/form_select";
 import { getAllUsers } from "../../employees/action";
 import { Skeleton } from "@/components/ui/skeleton";
-import { addUserToDepartment } from "../actions";
+import { addUserToProject } from "../actions";
 
-export const AddUserToDepartmentSchema = z.object({
+export const AddUserToProjectSchema = z.object({
   user_id: z.string().min(1,{ message: "invalid email format" }),
-  department_id: z.number()
+  project_id: z.number()
 });
 
-const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
+const AddUserToProject = ({project_id}: {project_id: number}) => {
   const { toast } = useToast();
   const client = useQueryClient();
 
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting: isLoading },
-  } = useForm<z.infer<typeof AddUserToDepartmentSchema>>({
-    resolver: zodResolver(AddUserToDepartmentSchema),
+  } = useForm<z.infer<typeof AddUserToProjectSchema>>({
+    resolver: zodResolver(AddUserToProjectSchema),
     defaultValues: {
-        department_id
+        project_id
     }
   });
   const { data, isLoading: dataLoading } = useQuery({
@@ -50,14 +49,14 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
 
   const onsubmit = handleSubmit(async (data) => {
 
-    const message = await addUserToDepartment(data);
+    const message = await addUserToProject(data);
 
     if (message === "successful") {
       toast({
         title: "user added successful ",
         description: message,
       });
-      client.invalidateQueries({ queryKey: ["department"] });
+      client.invalidateQueries({ queryKey: ["project"] });
     } else {
       toast({
         variant: "destructive",
@@ -78,10 +77,10 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="text-xl">Add employee</DialogTitle>
-            <DialogDescription>add to department </DialogDescription>
+            <DialogDescription>add to project </DialogDescription>
           </DialogHeader>
           {dataLoading || data === undefined?
-          <DepartmentSkeleton />
+          <ProjectSkeleton />
         :
         <form onSubmit={onsubmit}>
             <div className="flex flex-col gap-1 mt-10">
@@ -101,10 +100,10 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
   );
 };
 
-export default AddUserToDepartMent;
+export default AddUserToProject;
 
 
-function DepartmentSkeleton() {
+function ProjectSkeleton() {
     return (
         <div className="flex flex-col gap-3">
             <Skeleton className="h-9 w-full" />

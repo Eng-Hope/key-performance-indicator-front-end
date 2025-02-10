@@ -67,7 +67,7 @@ const DepartmentList = () => {
                 <div className="flex flex-col gap-10">
                     {data.data.map((department, index) =>
                         <div key={department.id} className="border p-2">
-                            <div className="flex w-full items-center">
+                            <div className="flex w-full items-center self-end">
                                 <AddUserToDepartMent department_id={department.id}/>
                             </div>
                             <div className="flex justify-between items-center py-3">

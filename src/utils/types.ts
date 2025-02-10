@@ -25,7 +25,18 @@ export type UserType = {
 
 export type DepartmentType = {
   id: number;
-  name: number;
+  name: string;
+  created_at: string;
+  users: UserType[]
+}
+
+
+export type ProjectType = {
+  id: number;
+  name: string;
+  start_date: string;
+  end_date: string | null;
+  description: string | null;
   created_at: string;
   users: UserType[]
 }
@@ -34,3 +45,5 @@ export type DepartmentType = {
 export type PaginatedUser = Pagination<UserType>;
 
 export type PaginatedDepartment = Pagination<DepartmentType>;
+
+export type PaginatedProject = Pagination<ProjectType>;

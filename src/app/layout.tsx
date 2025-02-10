@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "grow your business",
-  description: "a platform for managing your business",
+  title: "key performance measurements",
+  description: "a platfor to measure your performance",
 };
 
 export default function RootLayout({

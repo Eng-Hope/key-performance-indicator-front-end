@@ -23,5 +23,14 @@ export type UserType = {
   updated_at: string
 }
 
+export type DepartmentType = {
+  id: number;
+  name: number;
+  created_at: string;
+  users: UserType[]
+}
+
 
 export type PaginatedUser = Pagination<UserType>;
+
+export type PaginatedDepartment = Pagination<DepartmentType>;

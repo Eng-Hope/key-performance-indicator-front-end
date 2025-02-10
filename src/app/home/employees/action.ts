@@ -44,9 +44,9 @@ export async function signUp(
  * @returns 
  */
 export async function getAllUsers(
-  page?: number,
-  perpage?: number,
-  query?: string
+  page: number = 1,
+  perpage: number= 10,
+  query: string = ''
 ) {
   const access_token = await getToken();
 

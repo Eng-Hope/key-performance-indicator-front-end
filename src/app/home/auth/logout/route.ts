@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
     if (response.ok) {
       cookieStote.delete("auth-token");
       cookieStote.delete("details");
+      cookieStote.delete("auth-exp");
       return NextResponse.json(true);
     } else {
       console.log(response);

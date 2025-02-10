@@ -23,6 +23,11 @@ export const sideBarData = [
         ],
       },
       {
+        title: "Employees",
+        url: "/home/employees",
+        icon: Users2,
+      },
+      {
         title: "Departments",
         url: "/home/departments",
         icon: House,
@@ -43,11 +48,7 @@ export const sideBarData = [
         url: "/home/performance",
         icon: ChartBar,
       },
-      {
-        title: "Employees",
-        url: "/home/employees",
-        icon: Users2,
-      },
+
     ],
   },
 ];

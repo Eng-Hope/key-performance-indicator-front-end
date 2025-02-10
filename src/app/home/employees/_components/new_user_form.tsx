@@ -39,6 +39,9 @@ const NewUser = () => {
     formState: { errors, isSubmitting: isLoading },
   } = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
+    defaultValues: {
+      password: "123456"
+    }
   });
 
   const onsubmit = handleSubmit(async (data) => {
@@ -95,7 +98,7 @@ const NewUser = () => {
                 placeholder="Enter password"
                 label="Password"
                 name="password"
-                type="password"
+                type="text"
                 register={register}
                 error={errors.password?.message}
               />

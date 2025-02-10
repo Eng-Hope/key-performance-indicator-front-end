@@ -1,4 +1,5 @@
 "use client";
+import Logo from "@/app/_components/logo";
 import {
   Collapsible,
   CollapsibleContent,
@@ -82,23 +83,7 @@ const KpiSidebar = () => {
       <SidebarHeader className="pt-3">
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <Home />
-                  Select Workspace
-                  <ChevronDown className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuItem>
-                  <span>Acme Inc</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Acme Corp.</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Logo />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

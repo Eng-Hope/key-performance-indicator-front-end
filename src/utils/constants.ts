@@ -4,13 +4,14 @@ import {
   LayoutDashboard,
   Option,
   Projector,
+  User,
   User2Icon,
   Users2,
 } from "lucide-react";
 
 export const sideBarData = [
   {
-    group_name: "my business",
+    group_name: "key performance validator",
 
     menu: [
       {
@@ -44,9 +45,9 @@ export const sideBarData = [
         icon: Option,
       },
       {
-        title: "Performance",
+        title: "my performance",
         url: "/home/performance",
-        icon: ChartBar,
+        icon: User,
       },
 
     ],

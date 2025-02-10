@@ -7,17 +7,17 @@ const Logo = ({ className }: { className?: string }) => {
     <Link href="/" className={cn("flex items-center", className)}>
       <img
         src="/assets/images/logo.png"
-        className="w-[50px] h-[40px] stroke-foreground"
+        className="w-[40px] h-[30px] stroke-foreground"
       ></img>
-      <svg className="w-[90px] h-[50px]">
+      <svg className="w-[40px] h-[30px]">
         <text
           x="50%"
           y="50%"
           textAnchor="middle"
-          fontSize="30"
+          fontSize="20"
           fontWeight="bold"
           fill="none"
-          strokeWidth="2"
+          strokeWidth="1.5"
           dy=".35em"
           className="stroke-foreground"
         >

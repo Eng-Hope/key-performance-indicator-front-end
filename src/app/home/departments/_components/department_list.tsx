@@ -42,6 +42,7 @@ const DepartmentList = () => {
         <div className="flex flex-col gap-5 pb-[100px] mt-5">
             <div className="flex flex-col gap-3 lg:gap-0 lg:flex-row lg:justify-between lg:items-center">
                 <SearchInput
+                placeholder="Search for department by name"
                     onChange={(e) => {
                         setQuery(e.target.value);
                         setPage(1);

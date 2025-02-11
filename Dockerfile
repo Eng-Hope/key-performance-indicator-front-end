@@ -13,5 +13,5 @@ RUN npm run build
 # Install serve
 RUN npm install -g serve
 
-# Serve the app
-CMD ["serve", "-s", "out", "-l", "80"] 
+# Serve the app on port 3000
+CMD ["serve", "-s", "out", "-l", "3000"] 

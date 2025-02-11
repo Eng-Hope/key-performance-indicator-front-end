@@ -7,18 +7,14 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import Link from "next/link";
 import { Check, X } from "lucide-react";
 
 type PerPagesType = {
@@ -53,7 +49,6 @@ export default function CustomPagination({
   page,
   perPage,
   totalPages,
-  perPages = perPagesDefaut,
   setPage,
   setPerPage,
 }: {
@@ -64,11 +59,8 @@ export default function CustomPagination({
   setPage: Dispatch<SetStateAction<number>>,
   setPerPage: Dispatch<SetStateAction<number>>,
 }) {
-  const [value, setValue] = React.useState({
-    value: perPage,
-    label: `${perPage}`,
-  });
-  const router = useRouter();
+
+
   return (
     <div className="flex justify-center items-center gap-3">
       <Pagination className="w-fit">

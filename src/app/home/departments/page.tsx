@@ -1,7 +1,5 @@
 import React from 'react'
 import DepartmentList from './_components/department_list'
-import AddUserToDepartMent from './_components/add_users'
-import NewDepartment from './_components/new_department_form'
 
 const Departments = () => {
   return (

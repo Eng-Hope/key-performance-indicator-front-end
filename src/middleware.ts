@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { authenticationMiddleware } from "./middleware/authentication_middleware";
 import { authorizationMiddleware } from "./middleware/authorization_middleware";
 

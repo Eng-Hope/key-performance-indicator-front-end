@@ -1,11 +1,9 @@
 import {
-  ChartBar,
   House,
   LayoutDashboard,
   Option,
   Projector,
   User,
-  User2Icon,
   Users2,
 } from "lucide-react";
 

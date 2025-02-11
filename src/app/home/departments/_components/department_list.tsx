@@ -14,7 +14,6 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import SearchInput from "@/app/_components/search_input";
-import { useRouter } from "next/navigation";
 import CustomPagination from "@/components/custom/pagination";
 import { getAllDepartments } from "../actions";
 import AddUserToDepartMent from "./add_users";
@@ -24,7 +23,6 @@ const DepartmentList = () => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
     const [query, setQuery] = useState("");
-    const router = useRouter();
 
     const { data, error, isLoading } = useQuery({
         queryKey: ["department", { page, perPage, query }],
@@ -66,7 +64,7 @@ const DepartmentList = () => {
                 </Label>
             ) : (
                 <div className="flex flex-col gap-10">
-                    {data.data?.map((department, index) =>
+                    {data.data?.map((department) =>
                         <div key={department.id} className="border p-2">
                             <div className="flex w-full items-center self-end">
                                 <AddUserToDepartMent department_id={department.id}/>

@@ -1,8 +1,8 @@
 "use server";
 import { z } from "zod";
-import { LoginSchema } from "./page";
 import { cookies } from "next/headers";
 import { encriptUserDetails } from "@/utils/authentication";
+import { LoginSchema } from "@/utils/types";
 
 
 /**
@@ -59,7 +59,7 @@ export async function login(data: z.infer<typeof LoginSchema>) {
       const response_data = await response.json();
       return response_data.description;
     }
-  } catch (e: any) {
+  } catch (e) {
     console.log(e);
 
     return "An error has occured please try again";

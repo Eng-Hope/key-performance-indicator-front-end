@@ -16,10 +16,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Edit, Plus } from "lucide-react";
+import { Edit } from "lucide-react";
 import { getAllUsers } from "../../employees/action";
 import { Skeleton } from "@/components/ui/skeleton";
-import { addUserToKpi, editUserKpi } from "../actions";
+import { editUserKpi } from "../actions";
 import FormInput from "@/app/_components/input_field";
 
 export const EditUserKpiSchema = z.object({
@@ -36,7 +36,6 @@ const EditUserKpi = ({kpi_id, user_id, actual, review, username}
 
   const {
     handleSubmit,
-    control,
     register,
     formState: { errors, isSubmitting: isLoading },
   } = useForm<z.infer<typeof EditUserKpiSchema>>({

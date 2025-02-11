@@ -1,7 +1,7 @@
 "use server"
 
 import { getToken } from "@/utils/authentication";
-import {PaginatedKpi, PaginatedProject } from "@/utils/types";
+import {PaginatedKpi } from "@/utils/types";
 import { z } from "zod";
 import { NewKpiSchema } from "./_components/new_kpi_form";
 import { AddUserToKpiSchema } from "./_components/add_users";
@@ -45,7 +45,7 @@ export async function addUserToKpi(
       const response_data = (await response.json());
       return response_data.description;
     }
-  } catch (e: any) {
+  } catch (e) {
     console.log(e);
     return "An error has occured please try again";
   }
@@ -71,7 +71,7 @@ export async function addNewKpi(
         const response_data = (await response.json());
         return response_data.description;
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
       return "An error has occured please try again";
     }
@@ -100,7 +100,7 @@ export async function editUserKpi(
         const response_data = (await response.json());
         return response_data.description;
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
       return "An error has occured please try again";
     }

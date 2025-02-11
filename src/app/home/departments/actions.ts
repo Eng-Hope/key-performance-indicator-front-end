@@ -44,7 +44,7 @@ export async function addUserToDepartment(
       const response_data = (await response.json());
       return response_data.description;
     }
-  } catch (e: any) {
+  } catch (e) {
     console.log(e);
     return "An error has occured please try again";
   }
@@ -70,7 +70,7 @@ export async function addNewDepartment(
         const response_data = (await response.json());
         return response_data.description;
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
       return "An error has occured please try again";
     }

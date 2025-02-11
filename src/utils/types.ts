@@ -1,6 +1,11 @@
-import exp from "constants";
-import { number } from "zod";
+import { z } from "zod";
 
+export const LoginSchema = z.object({
+  email: z.string().email({ message: "invalid email format" }),
+  password: z
+    .string()
+    .min(6, { message: "password must contain atleast 6 characters" }),
+});
 export type UserDetails = {
   name: string;
   email: string;

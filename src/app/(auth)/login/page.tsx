@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -12,13 +12,8 @@ import { useRouter } from "next/navigation";
 import FormInput from "@/app/_components/input_field";
 import { login } from "./action";
 import SubmitButton from "@/app/_components/submitting_button";
-import { useQueryClient } from "@tanstack/react-query";
-export const LoginSchema = z.object({
-  email: z.string().email({ message: "invalid email format" }),
-  password: z
-    .string()
-    .min(6, { message: "password must contain atleast 6 characters" }),
-});
+import { LoginSchema } from "@/utils/types";
+
 const Login = () => {
   const {
     register,

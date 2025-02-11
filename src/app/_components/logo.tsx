@@ -1,14 +1,16 @@
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 
 const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href="/" className={cn("flex items-center", className)}>
-      <img
+      <Image
+      alt="logo"
         src="/assets/images/logo.png"
         className="w-[40px] h-[30px] stroke-foreground"
-      ></img>
+      ></Image>
       <svg className="w-[40px] h-[30px]">
         <text
           x="50%"

@@ -64,7 +64,7 @@ const ProjectList = () => {
                 </Label>
             ) : (
                 <div className="flex flex-col gap-10">
-                    {data.data.map((project, index) =>
+                    {data.data.map((project) =>
                         <div key={project.id} className="border p-2 flex flex-col gap-5">
                        <div>
                        <div className="flex w-full items-center self-end">

@@ -35,7 +35,6 @@ const NewUser = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors, isSubmitting: isLoading },
   } = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),

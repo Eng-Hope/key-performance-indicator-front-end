@@ -1,8 +1,8 @@
 import { getToken } from "@/utils/authentication";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   const cookieStote = await cookies();
   const access_token = await getToken();
   try {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       console.log(response);
       throw Error("arror durring logout");
     }
-  } catch (e: any) {
+  } catch (e) {
     throw e;
   }
 }

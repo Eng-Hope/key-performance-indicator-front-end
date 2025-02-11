@@ -16,7 +16,6 @@ import {
     TableFooter,
     TableRow,
 } from "@/components/ui/table";
-import AddUserToKpi from "./add_users";
 
 const KpiList = () => {
     const [page, setPage] = useState(1);
@@ -63,7 +62,7 @@ const KpiList = () => {
                 </Label>
             ) : (
                 <div className="flex flex-col gap-10">
-                    {data.data.map((kpi, index) =>
+                    {data.data.map((kpi) =>
                         <Kpi kpi={kpi} key={kpi.id} />
                     )}
                     <Table>

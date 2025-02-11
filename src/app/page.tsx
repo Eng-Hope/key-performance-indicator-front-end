@@ -1,12 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
 import HomeNavBar from "./_components/home_nav";
 import Footer from "./_components/footer";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <>
       <HomeNavBar />
@@ -16,7 +13,7 @@ export default function Home() {
            key performance indicator platform
           </Label>
           <Label className="text-gray-500 mt-5 text-md  lg:text-xl text-center">
-            Let's measure our ability to perform 
+            Let us measure our ability to perform 
             </Label>
         </div>
       </div>

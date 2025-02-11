@@ -14,7 +14,6 @@ import {
     TableRow,
   } from "@/components/ui/table";
 import SearchInput from "@/app/_components/search_input";
-import { useRouter } from "next/navigation";
 import { getAllUsers } from "../action";
 import CustomPagination from "@/components/custom/pagination";
 
@@ -22,7 +21,6 @@ const UserList = () => {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const [query, setQuery] = useState("");
-  const router = useRouter();
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["users", { page, perPage, query }],

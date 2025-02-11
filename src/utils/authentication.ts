@@ -158,6 +158,7 @@ export async function refreshToken(access_token: string) {
   }
   }
   catch(e){
+    console.log(e)
     return null;
   }
 }

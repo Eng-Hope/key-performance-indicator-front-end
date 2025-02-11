@@ -30,9 +30,8 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { decriptDetailsFromCookies } from "@/utils/authentication";
 import { sideBarData } from "@/utils/constants";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChevronDown, ChevronUp, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -44,13 +43,7 @@ const KpiSidebar = ({role, isLoading}:{role:string, isLoading: boolean}) => {
   const { toast } = useToast();
   const router = useRouter();
   const {
-    state,
-    open,
-    setOpen,
-    openMobile,
     setOpenMobile,
-    isMobile,
-    toggleSidebar,
   } = useSidebar();
   const queryClient = useQueryClient();
   const { isPending, mutate } = useMutation({

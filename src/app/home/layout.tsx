@@ -8,7 +8,7 @@ import { decriptDetailsFromCookies } from "@/utils/authentication";
 
 
 const BusinessLayout = ({ children }: { children: React.ReactNode }) => {
-     const {data, isLoading, error} = useQuery({queryKey: ["user-details"],
+     const {data, isLoading} = useQuery({queryKey: ["user-details"],
        queryFn: decriptDetailsFromCookies})
   return (
     <SidebarProvider>

@@ -12,24 +12,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Controller } from "react-hook-form";
+import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
-export function FormDatePicker({
+interface FormDatePickerProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  error?: string;
+  label: string;
+}
+
+export function FormDatePicker<T extends FieldValues>({
   control,
   name,
   error,
   label,
-}: {
-  control: any;
-  name: string;
-  error?: string;
-  label: string;
-}) {
-  const [date, setDate] = React.useState<Date>();
+}: FormDatePickerProps<T>) {
+  const [date, setDate] = React.useState<Date | undefined>();
 
   return (
     <Controller
-      name={name}
+      name={name} // Correctly typed as `Path<T>`
       control={control}
       render={({ field }) => {
         return (
@@ -41,7 +43,7 @@ export function FormDatePicker({
                   className={cn(
                     "w-[280px] justify-start text-left font-normal",
                     !date && "text-muted-foreground"
-                  )+`${error === undefined?"": "border-destructive dark:border-destructive focus-visible:outline-destructive outline-destructive"}`}
+                  ) + `${error === undefined ? "" : " border-destructive dark:border-destructive focus-visible:outline-destructive outline-destructive"}`}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {date ? format(date, "PPP") : <span>{label}</span>}
@@ -51,9 +53,9 @@ export function FormDatePicker({
                 <Calendar
                   mode="single"
                   selected={date}
-                  onSelect={(date) => {
-                    setDate(date);
-                    field.onChange(date);
+                  onSelect={(selectedDate) => {
+                    setDate(selectedDate);
+                    field.onChange(selectedDate);
                   }}
                   initialFocus
                 />
@@ -63,6 +65,6 @@ export function FormDatePicker({
           </div>
         );
       }}
-    ></Controller>
+    />
   );
 }

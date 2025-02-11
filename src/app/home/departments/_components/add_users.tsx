@@ -32,7 +32,6 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
   const client = useQueryClient();
 
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting: isLoading },

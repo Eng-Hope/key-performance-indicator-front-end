@@ -3,7 +3,6 @@ import {
   decriptDetailsFromCookies,
 } from "@/utils/authentication";
 import { NextRequest, NextResponse } from "next/server";
-import { rule } from "postcss";
 
 /**
  * check if the user has the permission to visit the requested route

@@ -2,14 +2,12 @@ import Logo from "@/app/_components/logo";
 import { ThemeSwitcher } from "@/components/theme_switcher";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { UserDetails } from "@/utils/types";
 import { decriptDetailsFromCookies } from "@/utils/authentication";
 
 const KpiNavBar = () => {
-   const {data, isLoading, error} = useQuery({queryKey: ["user-details"],
+   const {data, isLoading} = useQuery({queryKey: ["user-details"],
      queryFn: decriptDetailsFromCookies})
   return (
     <nav className="flex w-full items-end mb-3">

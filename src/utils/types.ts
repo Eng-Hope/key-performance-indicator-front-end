@@ -1,4 +1,5 @@
 import exp from "constants";
+import { number } from "zod";
 
 export type UserDetails = {
   name: string;
@@ -89,6 +90,13 @@ export type PerformanceType = {
               updated_at: string
             }
         }[]
+}
+
+export type DashbordType = {
+    user_count: number,
+    project_count: number,
+    department_count: number,
+    kpi_count: number
 }
 
 export type PaginatedUser = Pagination<UserType>;

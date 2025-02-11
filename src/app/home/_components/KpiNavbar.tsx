@@ -9,7 +9,8 @@ import { UserDetails } from "@/utils/types";
 import { decriptDetailsFromCookies } from "@/utils/authentication";
 
 const KpiNavBar = () => {
-   const {data, isLoading, error} = useQuery({queryKey: ["user-details"], queryFn: decriptDetailsFromCookies})
+   const {data, isLoading, error} = useQuery({queryKey: ["user-details"],
+     queryFn: decriptDetailsFromCookies})
   return (
     <nav className="flex w-full items-end mb-3">
       <SidebarTrigger />

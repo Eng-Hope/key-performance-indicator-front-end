@@ -88,7 +88,7 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
                 <FormSelect name="user_id"
                  control={control} label="Select user"
                  error={errors.user_id?.message}
-               items={data!.data.map(user => ({ label: user.email, value: user.id.toString() }))}
+               items={data.data?.map(user => ({ label: user.email, value: user.id.toString() }))}
             />
 
               <SubmitButton loading={isLoading} label="add" />

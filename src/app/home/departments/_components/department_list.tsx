@@ -58,7 +58,7 @@ const DepartmentList = () => {
                 Departments {data?.data && `(${data.total})`}
             </Label>
 
-            {isLoading || data == undefined ? (
+            {isLoading || data == undefined || data === null? (
                 <DepartmentSkeleton />
             ) : error !== null ? (
                 <Label className="text-md text-destructive">
@@ -66,7 +66,7 @@ const DepartmentList = () => {
                 </Label>
             ) : (
                 <div className="flex flex-col gap-10">
-                    {data.data.map((department, index) =>
+                    {data.data?.map((department, index) =>
                         <div key={department.id} className="border p-2">
                             <div className="flex w-full items-center self-end">
                                 <AddUserToDepartMent department_id={department.id}/>

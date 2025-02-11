@@ -27,16 +27,19 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
+import { decriptDetailsFromCookies } from "@/utils/authentication";
 import { sideBarData } from "@/utils/constants";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ChevronDown, ChevronUp, Home, User2 } from "lucide-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ChevronDown, ChevronUp, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
-const KpiSidebar = () => {
+const KpiSidebar = ({role, isLoading}:{role:string, isLoading: boolean}) => {
+
   const pathName = usePathname();
   const { toast } = useToast();
   const router = useRouter();
@@ -88,86 +91,101 @@ const KpiSidebar = () => {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {sideBarData.map((group) => (
-          <SidebarGroup key={group.group_name}>
-            <SidebarGroupLabel>{group.group_name}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu className="gap-3">
-                {group.menu.map((menu) => (
-                  <Collapsible
-                    className="group/collapsible"
-                    key={group.group_name + menu.title}
-                  >
-                    <SidebarMenuItem>
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton
-                          isActive={menu.url === pathName}
-                          asChild
-                          className="hover:cursor-pointer"
-                        >
-                          {menu.url === undefined ? (
-                            <span>
-                              {" "}
-                              <menu.icon />
-                              <span>{menu.title}</span>
-                              {menu.submenu === undefined ? (
-                                ""
-                              ) : (
-                                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                              )}
-                            </span>
-                          ) : (
-                            <Link
-                              href={menu.url}
-                              onClick={() => setOpenMobile(false)}
-                            >
-                              <menu.icon />
-                              <span>{menu.title}</span>
-                              {menu.submenu === undefined ? (
-                                ""
-                              ) : (
-                                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                              )}{" "}
-                            </Link>
-                          )}
-                        </SidebarMenuButton>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent>
-                        {menu.submenu?.map((sub) => (
-                          <SidebarMenuSub
-                            key={group.group_name + menu.title + sub.title}
-                            className="gap-4"
-                          >
-                            <SidebarMenuSubItem>
-                              <Link href={sub.url}>
-                                {" "}
-                                <SidebarMenuButton
-                                  onClick={() => setOpenMobile(false)}
-                                  isActive={pathName === sub.url}
+        {
+
+          isLoading ?
+
+            <SideBarLoading />
+
+            :
+
+
+            sideBarData.map((group) => (
+              <SidebarGroup key={group.group_name}>
+                <SidebarGroupLabel>{group.group_name}</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu className="gap-3">
+                    {group.menu.map((menu) => (
+                      <Collapsible
+                        className="group/collapsible"
+                        key={group.group_name + menu.title}
+                      >
+                        {
+                          (role === "admin" ||
+                            (menu.url === "/home" || menu.url === "/home/performance"))
+                          &&
+
+                          <SidebarMenuItem>
+                            <CollapsibleTrigger asChild>
+                              <SidebarMenuButton
+                                isActive={menu.url === pathName}
+                                asChild
+                                className="hover:cursor-pointer"
+                              >
+                                {menu.url === undefined ? (
+                                  <span>
+                                    {" "}
+                                    <menu.icon />
+                                    <span>{menu.title}</span>
+                                    {menu.submenu === undefined ? (
+                                      ""
+                                    ) : (
+                                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                    )}
+                                  </span>
+                                ) : (
+                                  <Link
+                                    href={menu.url}
+                                    onClick={() => setOpenMobile(false)}
+                                  >
+                                    <menu.icon />
+                                    <span>{menu.title}</span>
+                                    {menu.submenu === undefined ? (
+                                      ""
+                                    ) : (
+                                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                    )}{" "}
+                                  </Link>
+                                )}
+                              </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              {menu.submenu?.map((sub) => (
+                                <SidebarMenuSub
+                                  key={group.group_name + menu.title + sub.title}
+                                  className="gap-4"
                                 >
-                                  <Label>{sub.title}</Label>
-                                </SidebarMenuButton>
-                              </Link>
-                            </SidebarMenuSubItem>
-                          </SidebarMenuSub>
-                        ))}
-                        <SidebarMenuSub className="gap-4"></SidebarMenuSub>
-                      </CollapsibleContent>
-                    </SidebarMenuItem>
-                  </Collapsible>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+                                  <SidebarMenuSubItem>
+                                    <Link href={sub.url}>
+                                      {" "}
+                                      <SidebarMenuButton
+                                        onClick={() => setOpenMobile(false)}
+                                        isActive={pathName === sub.url}
+                                      >
+                                        <Label>{sub.title}</Label>
+                                      </SidebarMenuButton>
+                                    </Link>
+                                  </SidebarMenuSubItem>
+                                </SidebarMenuSub>
+                              ))}
+                              <SidebarMenuSub className="gap-4"></SidebarMenuSub>
+                            </CollapsibleContent>
+                          </SidebarMenuItem>
+                        }
+                      </Collapsible>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            ))}
       </SidebarContent>
-      <SidebarFooter className="pb-3">
+      <SidebarFooter className="pb-[30px]">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <LogOut /> sign out
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -175,12 +193,6 @@ const KpiSidebar = () => {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
                 <DropdownMenuItem
                   className="focus:bg-destructive cursor-pointer"
                   onClick={() => mutate()}
@@ -197,3 +209,16 @@ const KpiSidebar = () => {
 };
 
 export default KpiSidebar;
+
+
+function SideBarLoading() {
+  return (
+    <div className="flex flex-col gap-3 px-2">
+      <Skeleton className="h-9 w-full" />
+      <Skeleton className="h-9 w-full" />
+      <Skeleton className="h-9 w-full" />
+      <Skeleton className="h-9 w-full" />
+      <Skeleton className="h-9 w-full" />
+    </div>
+  );
+}

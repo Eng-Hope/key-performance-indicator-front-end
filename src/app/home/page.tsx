@@ -1,13 +1,12 @@
+import { Label } from '@/components/ui/label';
 import { decriptDetailsFromCookies } from '@/utils/authentication'
 import React from 'react'
+import Dashboard from '../_components/dashboard';
 
 const Page = async () => {
-    const details = await decriptDetailsFromCookies();
   return (
     <div>
-          home
-          {details?.email}
-          {details?.name}
+      <Dashboard />
     </div>
   )
 }

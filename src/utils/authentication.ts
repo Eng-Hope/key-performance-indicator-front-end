@@ -25,6 +25,7 @@ export async function encriptUserDetails(details: UserDetails, time = "1y") {
  * return user details from cookies
  */
 export async function decriptDetailsFromCookies() {
+  try{
   const cookieStote = await cookies();
   const { payload } = await jwtVerify(
     cookieStote.get("details")?.value ?? "",
@@ -34,6 +35,9 @@ export async function decriptDetailsFromCookies() {
     throw Error("no data found");
   }
   return payload.details as UserDetails;
+}catch(e){
+  console.log(e)
+}
 }
 
 /**

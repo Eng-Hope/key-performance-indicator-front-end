@@ -19,7 +19,6 @@ const HomeNavBar = () => {
           label="home"
         />
         <NavBarCustomLink href="/login" label="login" />
-        <NavBarCustomLink href="/about" label="about" />
         {/* separator */}
         <div className="border h-7 dark:border-gray-700 " />
         <ThemeSwitcher />
@@ -47,11 +46,6 @@ const HomeNavBar = () => {
             setIsMenuShown={setIsMenuShown}
             href="/login"
             label="login"
-          />
-          <NavBarCustomLink
-            setIsMenuShown={setIsMenuShown}
-            href="/about"
-            label="about"
           />
         </div>
       )}

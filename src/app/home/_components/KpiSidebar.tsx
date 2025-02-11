@@ -105,7 +105,7 @@ const KpiSidebar = ({role, isLoading}:{role:string, isLoading: boolean}) => {
                       >
                         {
                           (role === "admin" ||
-                            (menu.url === "/home" || menu.url === "/home/performance"))
+                            (menu.url === null || menu.url === undefined || menu.url === "" || menu.url === "/home/performance"))
                           &&
 
                           <SidebarMenuItem>

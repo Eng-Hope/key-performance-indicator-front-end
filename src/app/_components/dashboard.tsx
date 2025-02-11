@@ -24,7 +24,7 @@ const Dashboard = () => {
     <DashboardItem label="Total employees" value={data?.user_count??0}/>
     <DashboardItem label="Projects" value={data?.project_count??0}/>
     <DashboardItem label="kpi count" value={data?.kpi_count??0}/>
-    <DashboardItem label="Total departments" value={data?.department_count??0}/>
+    <DashboardItem label="Total departments" value={data?.department_counr??0}/>
 </div>
   )
 }

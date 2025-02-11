@@ -100,7 +100,7 @@ export type PerformanceType = {
 export type DashbordType = {
     user_count: number,
     project_count: number,
-    department_count: number,
+    department_counr: number,
     kpi_count: number
 }
 

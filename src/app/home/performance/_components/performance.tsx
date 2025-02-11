@@ -89,10 +89,10 @@ const Performance = () => {
     <TableFooter>
         <TableRow>
             <TableCell colSpan={5} />
-            <TableCell >Total: {data.kpis.reduce((acc, item)=> acc+item.weight, 0)} %</TableCell>
+            <TableCell >Total: {data.kpis.reduce((acc, item)=> acc+(item.weight), 0)} %</TableCell>
             <TableCell colSpan={1}/>
             <TableCell>
-                Score: {data.kpis.reduce((acc, item)=> acc + (item.pivot?.review||0), 0)} %
+                Score: {data.kpis.reduce((sum, kpi) => sum + (kpi.pivot.review || 0), 0)} %
             </TableCell>
         </TableRow>
     </TableFooter>

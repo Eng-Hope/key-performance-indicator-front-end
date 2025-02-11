@@ -7,6 +7,8 @@ const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href="/" className={cn("flex items-center", className)}>
       <Image
+      width={10}
+      height={10}
       alt="logo"
         src="/assets/images/logo.png"
         className="w-[40px] h-[30px] stroke-foreground"

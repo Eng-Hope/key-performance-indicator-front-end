@@ -57,6 +57,8 @@ const AddUserToDepartMent = ({department_id}: {department_id: number}) => {
         description: message,
       });
       client.invalidateQueries({ queryKey: ["department"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
+
     } else {
       toast({
         variant: "destructive",

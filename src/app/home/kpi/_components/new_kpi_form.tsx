@@ -51,6 +51,7 @@ const NewkPI = () => {
         description: message,
       });
       client.invalidateQueries({ queryKey: ["kpi"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
     } else {
       toast({
         variant: "destructive",

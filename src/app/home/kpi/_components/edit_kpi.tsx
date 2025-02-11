@@ -63,6 +63,8 @@ const EditUserKpi = ({kpi_id, user_id, actual, review, username}
         description: message,
       });
       client.invalidateQueries({ queryKey: ["kpi"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
+
     } else {
       toast({
         variant: "destructive",

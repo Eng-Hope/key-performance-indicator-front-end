@@ -57,6 +57,8 @@ const AddUserToKpi = ({kpi_id}: {kpi_id: number}) => {
         description: message,
       });
       client.invalidateQueries({ queryKey: ["kpi"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
+
     } else {
       toast({
         variant: "destructive",

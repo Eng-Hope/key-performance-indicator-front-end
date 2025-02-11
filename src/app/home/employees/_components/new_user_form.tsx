@@ -52,6 +52,8 @@ const NewUser = () => {
         description: message,
       });
       client.invalidateQueries({ queryKey: ["users"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
+
     } else {
       toast({
         variant: "destructive",

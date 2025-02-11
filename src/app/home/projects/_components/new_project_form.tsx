@@ -49,6 +49,8 @@ const NewProject = () => {
         description: message,
       });
       client.invalidateQueries({ queryKey: ["project"] });
+      client.invalidateQueries({ queryKey: ["dashboard"] });
+
     } else {
       toast({
         variant: "destructive",

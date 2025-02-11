@@ -14,7 +14,6 @@ export const sideBarData = [
     menu: [
       {
         title: "Dashboard",
-        url: "/home",
         icon: LayoutDashboard,
         submenu: [
           { title: "dashboard", url: "/home" },

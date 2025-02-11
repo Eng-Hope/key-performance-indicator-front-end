@@ -10,8 +10,7 @@ COPY . .
 
 RUN npm run build
 
-# Install serve
 RUN npm install -g serve
 
-# Serve the app on port 3000
-CMD ["serve", "-s", "out", "-l", "3000"] 
+# Serve on 0.0.0.0 and port 3000 (or $PORT if Render provides it)
+CMD ["serve", "-s", "out", "-l", "3000", "-h", "0.0.0.0"] 

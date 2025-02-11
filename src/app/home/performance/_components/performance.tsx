@@ -39,8 +39,8 @@ const Performance = () => {
 
   if (data.kpis && data.kpis.length > 0) {
       for (const kpi of data.kpis) {
-          totalWeight += kpi.weight;
-          totalReview +=  kpi.pivot?.review || 0;
+          totalWeight += parseInt(kpi.weight.toString());
+          totalReview +=  kpi.pivot?.review === null? 0: parseInt(kpi.pivot.review.toString());
       }
   }
   return (
